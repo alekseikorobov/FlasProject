@@ -7,8 +7,12 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route('/')
-def hello_world():
-    return 'project2'
+def index()
+    return ''
+
+@app.route('/version')
+def version_site():
+    return 'version 1.2'
 
 @app.route('/list')
 def list():

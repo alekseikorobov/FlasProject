@@ -3,16 +3,20 @@
 
 from flask import Flask, render_template
 
+import json
+
+cfg = json.load(open("config.json", "r"))
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route('/')
-def index()
-    return ''
+def index():
+    return 'ok'
 
 @app.route('/version')
 def version_site():
-    return 'version 1.2'
+    return cfg['version']
 
 @app.route('/list')
 def list():

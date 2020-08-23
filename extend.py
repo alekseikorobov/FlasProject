@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import json
 
 
-cfg = json.load(open("config.json", "r"))
+cfg = json.load(open("config_private.json", "r"))
 
 url='https://www.pythonanywhere.com/login/?next=/'
 url2='https://www.pythonanywhere.com/user/alekseikorobov/webapps/'

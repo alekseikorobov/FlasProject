@@ -1,21 +1,61 @@
 #https://www.pythonanywhere.com/user/alekseikorobov/account/#api_token
+#https://help.pythonanywhere.com/pages/API
 
 
 import requests
+import json
 
-cfg = json.load(open("config.json", "r"))
+cfg = json.load(open("config_private.json", "r"))
 
 username = cfg['username']
 token = cfg['token']
 
+command = 'consoles'
+baseUrl = 'https://www.pythonanywhere.com/api/v0/user/{username}/{command}/'
+commandUrl = 'https://www.pythonanywhere.com/api/v0/user/{username}/consoles/{id}/send_input/'
+get_latest_output_url = 'https://www.pythonanywhere.com/api/v0/user/{username}/consoles/{id}/get_latest_output/'
+
 response = requests.get(
-  'https://www.pythonanywhere.com/api/v0/user/{username}/cpu/'.format(
-      username=username
+  baseUrl.format(
+      username=username,
+      command=command
   ),
   headers={'Authorization': 'Token {token}'.format(token=token)}
 )
-if response.status_code == 200:
-  print('CPU quota info:')
+if response.status_code == 200:  
+  bytes = response.content
+  str = bytes.decode("utf-8")
+  list = eval(str)
+  print(list)
+  if len(list)>0:
+    id = list[0]['id']
+    print(id)
+  else:
+    print('create new console')
+    pass
+  data={'input':'git pull\n'}
+  response = requests.post(
+    commandUrl.format(
+        username=username,
+        id=id
+    ),
+    headers={'Authorization': 'Token {token}'.format(token=token)},
+    data=data
+  )
+  print(response.status_code)
   print(response.content)
+
+  # if response.status_code ==200:
+  #   response = requests.get(
+  #     get_latest_output_url.format(
+  #         username=username,
+  #         id=id
+  #     ),
+  #     headers={'Authorization': 'Token {token}'.format(token=token)}
+  #   )
+  #   print(response.status_code)
+  #   print(response.content)
+
+
 else:
   print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))

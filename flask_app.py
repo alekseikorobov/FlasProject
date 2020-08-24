@@ -5,6 +5,7 @@ from flask import Flask, render_template
 
 import json
 import os
+#os.path.dirname(os.path.abspath(__file__))
 
 cfg = json.load(open("/home/alekseikorobov/mysite/config.json", "r"))
 

@@ -6,7 +6,7 @@ from flask import Flask, render_template
 import json
 import os
 
-cfg = json.load(open("./mysite/config.json", "r"))
+cfg = json.load(open("/home/alekseikorobov/mysite/config.json", "r"))
 
 app = Flask(__name__)
 app.config["DEBUG"] = True

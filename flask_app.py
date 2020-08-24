@@ -4,8 +4,9 @@
 from flask import Flask, render_template
 
 import json
+import os
 
-cfg = json.load(open("./config.json", "r"))
+#cfg = json.load(open("./config.json", "r"))
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -16,7 +17,8 @@ def index():
 
 @app.route('/version')
 def version_site():
-    return cfg['version']
+    #return cfg['version']
+    return os.path.abspath(os.getcwd())
 
 @app.route('/list')
 def list():

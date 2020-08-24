@@ -17,8 +17,11 @@ def index():
 
 @app.route('/version')
 def version_site():
-    return cfg['version']
-    #return os.path.abspath(os.getcwd())
+    try:
+        return cfg['version']
+        #return os.path.abspath(os.getcwd())
+    except expression as ex:
+        return str(ex)
 
 @app.route('/list')
 def list():

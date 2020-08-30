@@ -38,3 +38,7 @@ def initTable():
 @app.route("/insert", methods=["POST"])
 def insert():
     return 'ok'
+
+@app.route("/upload/<path:filename>", methods=["GET"])
+def upload(filename):
+    return send_from_directory(directory='/', filename=filename)

@@ -41,4 +41,4 @@ def insert():
 
 @app.route("/upload/<path:filename>", methods=["GET"])
 def upload(filename):
-    return send_from_directory(directory='/', filename=filename)
+    return send_from_directory(directory='.', filename=filename)

@@ -45,5 +45,5 @@ def upload(filename):
         response = send_from_directory(directory='.',filename=filename,as_attachment=True)
         response.cache_control.max_age = 5  # e.g. 1 minute
         return response
-     except expression as ex:
-         return str(ex)
+    except expression as ex:
+        return str(ex)

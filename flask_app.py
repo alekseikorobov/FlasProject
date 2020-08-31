@@ -21,7 +21,7 @@ def version_site():
     try:
         return cfg['version']
         #return os.path.abspath(os.getcwd())
-    except expression as ex:
+    except Exception as ex:
         return str(ex)
 
 @app.route('/list')
@@ -32,7 +32,7 @@ def list():
 def initTable():
     try:
         return 'init ok'
-    except expression as ex:
+    except Exception as ex:
         return ex
 
 @app.route("/insert", methods=["POST"])
@@ -45,5 +45,5 @@ def upload(filename):
         response = send_from_directory(directory='.',filename=filename,as_attachment=True)
         response.cache_control.max_age = 5  # e.g. 1 minute
         return response
-    except expression as ex:
+    except Exception as ex:
         return str(ex)

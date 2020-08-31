@@ -42,8 +42,8 @@ def insert():
 @app.route("/upload/<path:filename>", methods=["GET"])
 def upload(filename):
     try:
-        response = send_from_directory(directory='.',filename=filename)
+        response = send_from_directory(directory='.',filename=filename,as_attachment=True)
         response.cache_control.max_age = 5  # e.g. 1 minute
         return response
-     except Exception as e:
-         return str(e)
+     except expression as ex:
+         return str(ex)

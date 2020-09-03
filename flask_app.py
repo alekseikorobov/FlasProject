@@ -3,7 +3,7 @@
 
 from flask import Flask, render_template,send_from_directory,request
 from flask_sqlalchemy import SQLAlchemy
-
+import datetime
 import json
 import os
 #os.path.dirname(os.path.abspath(__file__))
@@ -85,14 +85,21 @@ def SetupDb():
 @app.route('/UploadStat',methods=["POST"])
 def UploadStat():
     try:
-        data = request.args.get('data')
-        machineName = request.args.get('machineName')
+        data = request.form.get('data')
+        machineName = request.form.get('machineName')
+        lines = data.split('\r\n')
+        lines = [x.split('-') for x in lines if x != '']
 
+        for i in lines:
+            message = ''
+            if len(i)>1:
+                message = i[1]
+            dateStr = i[0]
+            date = datetime.datetime.strptime(dateStr, '%Y%m%d%H%M%S')
+            stat = Stats(machineName=machineName, message=message, date=date)
+            db.session.add(stat)
+            db.session.commit()
 
-        # stat = Stats(machineName=machineName,)
-        # db.session.add(comment)
-        # db.session.commit()
-
-        return str(request.form)
+        return 'ok'
     except Exception as ex:
         return str(ex)

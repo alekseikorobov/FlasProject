@@ -1,7 +1,7 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask, render_template,send_from_directory
+from flask import Flask, render_template,send_from_directory,request
 from flask_sqlalchemy import SQLAlchemy
 
 import json

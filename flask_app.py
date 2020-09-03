@@ -49,10 +49,6 @@ def version_site():
     except Exception as ex:
         return str(ex)
 
-@app.route('/list')
-def list():
-    return render_template('list.html')
-
 @app.route('/init')
 def initTable():
     try:
@@ -103,3 +99,8 @@ def UploadStat():
         return 'ok'
     except Exception as ex:
         return str(ex)
+
+
+@app.route('/listStats')
+def listStats():
+    return render_template('list.html',stats=Stats.query.all())

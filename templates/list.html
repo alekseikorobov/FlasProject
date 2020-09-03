@@ -7,6 +7,12 @@
     <title>list</title>
 </head>
 <body>
-    <p>List</p>
+    {% for stat in stats %}
+        <div class="row">
+            <p>{{ stat.machineName }}</p>
+            <p>{{ stat.date }}</p>
+            <p>{{ stat.message }}</p>
+        </div>
+    {% endfor %}
 </body>
 </html>

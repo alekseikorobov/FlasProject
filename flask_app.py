@@ -93,6 +93,6 @@ def UploadStat():
         # db.session.add(comment)
         # db.session.commit()
 
-        return str(request.args)
+        return str(request.form)
     except Exception as ex:
         return str(ex)

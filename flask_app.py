@@ -72,6 +72,15 @@ def upload(filename):
         return response
     except Exception as ex:
         return str(ex)
+@app.route('/SetupDb')
+def SetupDb():
+    try:
+        from flask_app import db
+        db.create_all()
+        return 'ok'
+    except Exception as ex:
+        return str(ex)
+
 
 @app.route('/UploadStat',methods=["POST"])
 def UploadStat():

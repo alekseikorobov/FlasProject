@@ -93,6 +93,6 @@ def UploadStat():
         # db.session.add(comment)
         # db.session.commit()
 
-        return str(data)+'|||'+str(machineName)
+        return str(request.args)
     except Exception as ex:
         return str(ex)

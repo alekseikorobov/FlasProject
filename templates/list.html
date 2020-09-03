@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>list</title>
+    <style>
+        .row>span{
+            padding: 0px 10px;
+        }
+    </style>
 </head>
 <body>
     {% for stat in stats %}
         <div class="row">
-            <p>{{ stat.machineName }}</p>
-            <p>{{ stat.date }}</p>
-            <p>{{ stat.message }}</p>
+            <span>{{ stat.machineName }}</span>
+            <span>{{ stat.date }}</span>
+            <span>{{ stat.message }}</span>
         </div>
     {% endfor %}
 </body>
